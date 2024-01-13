@@ -115,6 +115,7 @@ function buscarNombre() {
   let itemNombre = document.getElementById("itemNombre").value;
   itemNombre = itemNombre.toUpperCase();  
 console.log(itemNombre)
+
   fetch("/juegos", {
     method: "GET",
     headers: {
@@ -128,7 +129,7 @@ console.log(itemNombre)
       let mostrarJuegos = "";
 
       for (let i = 0; i < datos.length; i++) {
-        if (datos[i].nombre === itemNombre) {
+        if (datos[i].nombre.toUpperCase().includes(itemNombre)) {
           mostrarJuegos += `
           <div id="card">
           <h3>${datos[i].nombre}</h3>
