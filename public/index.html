@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juegos de Consola</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <br>
+  <hr>
+  <br>
+  <div id="titulo">
+    <h1>LOS JUEGOS DE MI VIDA</h1>
+  </div>
+  <br>
+  <hr />
+  <div id="maqueta">
+  <div class="cuatro">
+    <h2>MOSTRAR TODOS LOS JUEGOS:</h2>
+    <button onclick="mostrar()">Mostrar Todos</button>
+    <!-- <br> -->
+    <button onclick="limpiar()">Limpiar Pantalla</button>
+  </div>
+  <div class="cuatro">
+    <h2>AÑADIR UN NUEVO JUEGO:</h2>
+    <input type="text" placeholder="Nombre" id="nombre" />
+    <input type="text" placeholder="Plataforma" id="plataforma" />
+    <input type="number" placeholder="Nota" id="nota" />
+    <input type="number" placeholder="Año" id="anyo"/>
+    <input type="url" placeholder="Imagen" id="imagen"/>
+    <button onclick="insertar()">Añadir</button>
+  </div>
+  <div class="cuatro">
+    <h2>EDITAR UN JUEGO EXISTENTE:</h2>
+    <input type="text" placeholder="Nombre" id="nombreEditar" />
+    <input type="text" placeholder="Plataforma" id="plataformaEditar" />
+    <input type="number" placeholder="Nota" id="notaEditar" />
+    <input type="number" placeholder="Año" id="anyoEditar">
+    <input type="url" placeholder="Imagen" id="imagenEditar" />
+    <button onclick="editar()">Editar</button>
+  </div>
+  <div class="cuatro">
+    <h2>BORRAR ALGUNO DE LOS JUEGO:</h2>
+    <input type="text" placeholder="Nombre" id="nombreBorrar" />
+    <button onclick="borrar()">Borrar</button>
+  </div>
+</div>
+  <div id="busqueda">
+    <div class="cuatro">
+      <h3>Busca por Nombre:</h3>
+      <input type="text" placeholder="Nombre" id="itemNombre" />
+      <button onclick="buscarNombre()">Buscar</button>
+    </div>
+    <div class="cuatro">
+      <h3>Busca por Plataforma:</h3>
+      <input type="text" placeholder="Plataforma" id="itemPlataforma" />
+      <button onclick="buscarPlataforma()">Buscar</button>
+    </div>
+    <div class="cuatro">
+      <h3>Busca por Nota:</h3>
+      <input type="number" placeholder="Nota" id="itemNota" />
+      <button onclick="buscarNota()">Buscar</button>
+    </div>
+    <div class="cuatro">
+      <h3>Busca por Año:</h3>
+      <input type="number" placeholder="Año" id="itemAnyo" />
+      <button onclick="buscarAnyo()">Buscar</button>
+    </div>
+  </div> 
+  <hr />  
+  <br>
+  <div id="print"></div>
+  <br>
+  <hr />
+  <br><br><br><br><br><br>
+</body>
+<script src="./demo.js"></script>
+
+</html>
