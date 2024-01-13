@@ -34,10 +34,10 @@ function insertar() {
   let nombre = document.getElementById("nombre").value;
   nombre = nombre.toUpperCase();
   let plataforma = document.getElementById("plataforma").value;
-  plataforma=plataforma.toUpperCase();
-  let nota = document.getElementById("nota").value;  
-  let anyo = document.getElementById("anyo").value;  
-  let imagen = document.getElementById("imagen").value;  
+  plataforma = plataforma.toUpperCase();
+  let nota = document.getElementById("nota").value;
+  let anyo = document.getElementById("anyo").value;
+  let imagen = document.getElementById("imagen").value;
   let nuevo = { nombre, plataforma, nota, anyo, imagen };
   console.log(nuevo);
 
@@ -55,7 +55,7 @@ function editar() {
   let nombre = document.getElementById("nombreEditar").value;
   nombre = nombre.toUpperCase();
   let plataforma = document.getElementById("plataformaEditar").value;
-  plataforma=plataforma.toUpperCase();
+  plataforma = plataforma.toUpperCase();
   let nota = document.getElementById("notaEditar").value;
   let anyo = document.getElementById("anyoEditar").value;
   let imagen = document.getElementById("imagenEditar").value;
@@ -74,7 +74,7 @@ function editar() {
 
 function borrar() {
   let nombre = document.getElementById("nombreBorrar").value;
-  nombre = nombre.toUpperCase();  
+  nombre = nombre.toUpperCase();
 
   let nuevo = {
     nombre: nombre,
@@ -91,9 +91,9 @@ function borrar() {
 }
 
 function borrarCard(event) {
-  let button = event.target; 
-  let card = button.parentNode; 
-  let nombre = card.querySelector("input[name='cardBorrar']").value; 
+  let button = event.target;
+  let card = button.parentNode;
+  let nombre = card.querySelector("input[name='cardBorrar']").value;
 
   let nuevo = {
     nombre: nombre,
@@ -110,11 +110,10 @@ function borrarCard(event) {
   mostrar();
 }
 
-
 function buscarNombre() {
   let itemNombre = document.getElementById("itemNombre").value;
-  itemNombre = itemNombre.toUpperCase();  
-console.log(itemNombre)
+  itemNombre = itemNombre.toUpperCase();
+  console.log(itemNombre);
 
   fetch("/juegos", {
     method: "GET",
@@ -151,9 +150,9 @@ console.log(itemNombre)
 }
 
 function buscarPlataforma() {
-  let itemPlataforma = document.getElementById("itemPlataforma").value;  
+  let itemPlataforma = document.getElementById("itemPlataforma").value;
   itemPlataforma = itemPlataforma.toUpperCase();
-console.log(itemPlataforma);
+  console.log(itemPlataforma);
   // FETCH E IMPRESIÓN DE RESULTADOS
   fetch("/juegos", {
     method: "GET",
@@ -168,7 +167,7 @@ console.log(itemPlataforma);
       let mostrarJuegos = "";
 
       for (let i = 0; i < datos.length; i++) {
-        if (datos[i].plataforma == itemPlataforma) {
+        if (datos[i].plataforma.toUpperCase().includes(itemPlataforma)) {
           mostrarJuegos += `
           <div id="card">
           <h3>${datos[i].nombre}</h3>
@@ -230,7 +229,7 @@ function buscarNota() {
 function buscarAnyo() {
   let itemAnyo = document.getElementById("itemAnyo").value;
   console.log(itemAnyo);
-  
+
   // FETCH E IMPRESIÓN DE RESULTADOS
   fetch("/juegos", {
     method: "GET",
