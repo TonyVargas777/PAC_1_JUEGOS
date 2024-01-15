@@ -264,3 +264,20 @@ function buscarAnyo() {
       document.getElementById("print").innerHTML = mostrarJuegos;
     });
 }
+
+function resetBaseDeDatos() {
+  fetch("/reset", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (respuesta) {
+      if (respuesta.ok) {
+        console.log("Base de Datos reiniciada correctamente");
+        // Aquí puedes realizar alguna acción adicional si es necesario
+      } else {
+        console.error("Error al reiniciar la Base de Datos");
+      }
+    });    
+}

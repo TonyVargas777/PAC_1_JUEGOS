@@ -55,6 +55,22 @@ app.delete("/juegos", (req, res) => {
   res.send(juegos);
 });
 
+app.post("/reset", (req, res) => {
+  const fs = require("fs");
+
+  try {
+    // Lee el contenido de array - copia.js
+    const contenidoCopia = fs.readFileSync("array - copia.js", "utf-8");
+
+    // Sobrescribe array.js con el contenido de array - copia.js
+    fs.writeFileSync("array.js", contenidoCopia, "utf-8");
+
+    res.status(200).send("Base de Datos reiniciada correctamente");
+  } catch (error) {
+    console.error("Error al reiniciar la Base de Datos", error);
+    res.status(500).send("Error al reiniciar la Base de Datos");
+  }
+});
 
 
 app.listen(3000);
