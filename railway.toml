@@ -1,0 +1,19 @@
+[service]
+name = "mi-aplicacion"
+root = "./"
+
+[deploy]
+build = "npm install"
+start = "node server.js"
+env = ["NODE_ENV=production", "PORT=3000"]
+
+[env]
+PORT = "3000"
+NODE_ENV = "production"
+DATABASE_URL = "${{ DATABASE_URL }}"
+
+[cron]
+[[cron.jobs]]
+# Reinicia la app cada 6 horas
+schedule = "0 */6 * * *"
+command = "railway restart"
