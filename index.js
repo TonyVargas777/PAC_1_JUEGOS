@@ -1,13 +1,21 @@
 const express = require("express");
+const fs = require("fs");
+
 const app = express();
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const juegos = require("./array");
+// Cargar datos iniciales desde el archivo JSON
+const cargarDatosOriginales = () => {
+  return JSON.parse(fs.readFileSync("array.json", "utf-8"));
+};
+
+// Guardamos los juegos en memoria
+let juegos = cargarDatosOriginales();
 
 app.get("/juegos", (req, res) => {
-  res.send(juegos);
+  res.json(juegos);
 });
 
 app.post("/juegos", (req, res) => {
@@ -16,61 +24,42 @@ app.post("/juegos", (req, res) => {
     plataforma: req.body.plataforma,
     nota: req.body.nota,
     anyo: req.body.anyo,
-    imagen: req.body.imagen,    
-  };  
+    imagen: req.body.imagen,
+  };
   juegos.push(nuevoJuego);
-  res.send(juegos);
-  console.log(nuevoJuego);
+  res.json(juegos);
 });
-
-
 
 app.put("/juegos", (req, res) => {
   let nombre = req.body.nombre;
   let plataforma = req.body.plataforma;
   let nota = req.body.nota;
-  let anyo= req.body.anyo;
+  let anyo = req.body.anyo;
   let imagen = req.body.imagen;
-  console.log(nombre,plataforma,nota,anyo);
+
   for (let i = 0; i < juegos.length; i++) {
-    if (nombre == juegos[i].nombre) {
+    if (nombre === juegos[i].nombre) {
       juegos[i].plataforma = plataforma;
       juegos[i].nota = nota;
       juegos[i].anyo = anyo;
       juegos[i].imagen = imagen;
     }
   }
-  res.send(juegos);
+  res.json(juegos);
 });
 
 app.delete("/juegos", (req, res) => {
   let nombre = req.body.nombre;
-  console.log(nombre);
-  for (let i = 0; i < juegos.length; i++) {
-    if (nombre === juegos[i].nombre) {
-      console.log("he entrado, hay coincidencia, juego eliminado");
-      juegos.splice(i, 1);
-    }
-  }
-  res.send(juegos);
+  juegos = juegos.filter((juego) => juego.nombre !== nombre);
+  res.json(juegos);
 });
 
+// Resetear base de datos cargando de nuevo los datos originales
 app.post("/reset", (req, res) => {
-  const fs = require("fs");
-
-  try {
-    // Lee el contenido de array - copia.js
-    const contenidoCopia = fs.readFileSync("array - copia.js", "utf-8");
-
-    // Sobrescribe array.js con el contenido de array - copia.js
-    fs.writeFileSync("array.js", contenidoCopia, "utf-8");
-
-    res.status(200).send("Base de Datos reiniciada correctamente");
-  } catch (error) {
-    console.error("Error al reiniciar la Base de Datos", error);
-    res.status(500).send("Error al reiniciar la Base de Datos");
-  }
+  juegos = cargarDatosOriginales();
+  res.json({ message: "Base de Datos reiniciada correctamente", juegos });
 });
 
-
-app.listen(3000);
+app.listen(3000, () => {
+  console.log("Servidor escuchando en el puerto 3000");
+});
