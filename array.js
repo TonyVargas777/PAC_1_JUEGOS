@@ -60,7 +60,7 @@ const juegos = [
   plataforma: "SONY",
   nota: 9,
   anyo: 2009,
-  imagen:   "https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.ign.com%2Funcharted-ps4%2F102912%2Ffeature%2Ftodo-lo-que-necesitas-saber-de-la-saga-uncharted&psig=AOvVaw3ZNN7job13JZiW6t3UsTB7&ust=1765041745823000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCMjl4Lf7ppEDFQAAAAAdAAAAABAE",
+  imagen:   "https://alfabetajuega.com/hero/2019/07/uncharted-portada.jpg?width=1200",
   },
   {
   nombre: "NEED FOR SPEED",
